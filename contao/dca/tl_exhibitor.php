@@ -166,10 +166,6 @@ class tl_exhibitor extends Backend
             $text .= ' <span style="color:#888">[' . htmlspecialchars($row['standplatz']) . ']</span>';
         }
 
-        if ($row['reserviert']) {
-            $text .= ' <em>(reserviert)</em>';
-        }
-
         return $icon . ' ' . $text;
     }
 }
