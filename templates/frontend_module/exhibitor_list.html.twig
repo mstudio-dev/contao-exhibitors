@@ -1,0 +1,53 @@
+{% extends "@Contao/frontend_module/_base.html.twig" %}
+
+{% block content %}
+    {% if rows is not empty %}
+        <div class="exhibitor-list-wrap">
+            <table class="exhibitor-list">
+                <thead>
+                    <tr>
+                        <th class="col-logo">{{ 'MSC.exhibitor_logo'|trans({}, 'contao_default') ?: 'Logo' }}</th>
+                        <th class="col-stand">{{ 'tl_exhibitor.standplatz.0'|trans({}, 'contao_tl_exhibitor') ?: 'Standplatz' }}</th>
+                        <th class="col-status">{{ 'tl_exhibitor.reserviert.0'|trans({}, 'contao_tl_exhibitor') ?: 'Status' }}</th>
+                        <th class="col-website">{{ 'tl_exhibitor.website.0'|trans({}, 'contao_tl_exhibitor') ?: 'Website' }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                        <tr class="exhibitor-row{% if row.reserviert %} reserved{% endif %}">
+                            <td class="col-logo">
+                                {% if row.logo %}
+                                    <img
+                                        src="{{ row.logo.path|image_url }}"
+                                        alt="{{ row.standplatz }}"
+                                        class="exhibitor-logo"
+                                        loading="lazy"
+                                    >
+                                {% endif %}
+                            </td>
+                            <td class="col-stand">{{ row.standplatz }}</td>
+                            <td class="col-status">
+                                {% if row.reserviert %}
+                                    <span class="badge reserved">Reserviert</span>
+                                {% else %}
+                                    <span class="badge available">Verfügbar</span>
+                                {% endif %}
+                            </td>
+                            <td class="col-website">
+                                {% if row.website %}
+                                    <a
+                                        href="{{ row.website }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >{{ row.website|replace({'https://': '', 'http://': ''}) }}</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="exhibitor-empty">Keine Aussteller vorhanden.</p>
+    {% endif %}
+{% endblock %}
