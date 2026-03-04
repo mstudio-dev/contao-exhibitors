@@ -157,8 +157,8 @@ class tl_exhibitor extends Backend
     public function addStatusIcon(array $row, string $label): string
     {
         $icon  = $row['reserviert']
-            ? '<span style="color:#b00">&#9632;</span>'
-            : '<span style="color:#090">&#9632;</span>';
+            ? '<span style="color:#090">&#9632;</span>'
+            : '<span style="color:#b00">&#9632;</span>';
 
         $text = '<strong>' . htmlspecialchars($row['firmenname']) . '</strong>';
 
