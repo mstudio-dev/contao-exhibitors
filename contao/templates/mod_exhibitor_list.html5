@@ -14,8 +14,8 @@
             <?php foreach ($this->rows as $row): ?>
             <tr class="exhibitor-row<?= $row['reserviert'] ? ' reserved' : '' ?>">
                 <td class="ex-logo">
-                    <?php if ($row['logo']): ?>
-                    <img src="<?= $row['logo']->path ?>" alt="<?= $row['firmenname'] ?>" class="exhibitor-logo" loading="lazy">
+                    <?php if ($row['logoPath']): ?>
+                    <img src="<?= $row['logoPath'] ?>" alt="<?= $row['logoAlt'] ?>" class="exhibitor-logo" loading="lazy">
                     <?php endif; ?>
                 </td>
                 <td class="ex-name"><?= $row['firmenname'] ?></td>
