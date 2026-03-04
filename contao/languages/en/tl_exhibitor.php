@@ -8,6 +8,7 @@ $GLOBALS['TL_LANG']['tl_exhibitor']['contact_legend']   = 'Contact & Logo';
 $GLOBALS['TL_LANG']['tl_exhibitor']['publish_legend']   = 'Publishing';
 
 // Fields
+$GLOBALS['TL_LANG']['tl_exhibitor']['firmenname']  = ['Company name', 'Full name of the exhibiting company.'];
 $GLOBALS['TL_LANG']['tl_exhibitor']['standplatz']  = ['Stand number', 'Stand designation (e.g. A1, B3 …).'];
 $GLOBALS['TL_LANG']['tl_exhibitor']['reserviert']  = ['Reserved', 'Mark this stand as reserved.'];
 $GLOBALS['TL_LANG']['tl_exhibitor']['website']     = ['Company website', 'URL of the exhibitor\'s website (including https://).'];

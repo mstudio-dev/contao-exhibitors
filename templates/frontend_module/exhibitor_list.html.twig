@@ -7,6 +7,7 @@
                 <thead>
                     <tr>
                         <th class="col-logo">{{ 'MSC.exhibitor_logo'|trans({}, 'contao_default') ?: 'Logo' }}</th>
+                        <th class="col-name">{{ 'tl_exhibitor.firmenname.0'|trans({}, 'contao_tl_exhibitor') ?: 'Firmenname' }}</th>
                         <th class="col-stand">{{ 'tl_exhibitor.standplatz.0'|trans({}, 'contao_tl_exhibitor') ?: 'Standplatz' }}</th>
                         <th class="col-status">{{ 'tl_exhibitor.reserviert.0'|trans({}, 'contao_tl_exhibitor') ?: 'Status' }}</th>
                         <th class="col-website">{{ 'tl_exhibitor.website.0'|trans({}, 'contao_tl_exhibitor') ?: 'Website' }}</th>
@@ -25,6 +26,7 @@
                                     >
                                 {% endif %}
                             </td>
+                            <td class="col-name">{{ row.firmenname }}</td>
                             <td class="col-stand">{{ row.standplatz }}</td>
                             <td class="col-status">
                                 {% if row.reserviert %}

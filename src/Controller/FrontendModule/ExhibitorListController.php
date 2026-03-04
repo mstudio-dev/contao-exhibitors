@@ -35,6 +35,7 @@ class ExhibitorListController extends AbstractFrontendModuleController
                 }
 
                 $rows[] = [
+                    'firmenname'  => $exhibitor->firmenname,
                     'standplatz'  => $exhibitor->standplatz,
                     'reserviert'  => (bool) $exhibitor->reserviert,
                     'website'     => $exhibitor->website,

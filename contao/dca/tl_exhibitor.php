@@ -28,8 +28,8 @@ $GLOBALS['TL_DCA']['tl_exhibitor'] = [
             'panelLayout' => 'filter;search,limit',
         ],
         'label' => [
-            'fields'      => ['standplatz', 'reserviert'],
-            'format'      => '%s',
+            'fields'         => ['firmenname', 'standplatz', 'reserviert'],
+            'format'         => '%s',
             'label_callback' => ['tl_exhibitor', 'addStatusIcon'],
         ],
         'global_operations' => [
@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_exhibitor'] = [
 
     // Palettes
     'palettes' => [
-        'default' => '{exhibitor_legend},standplatz,reserviert;{contact_legend},website,logo;{publish_legend},published',
+        'default' => '{exhibitor_legend},firmenname,standplatz,reserviert;{contact_legend},website,logo;{publish_legend},published',
     ],
 
     // Fields
@@ -80,6 +80,17 @@ $GLOBALS['TL_DCA']['tl_exhibitor'] = [
         ],
         'sorting' => [
             'sql' => ['type' => 'integer', 'unsigned' => true, 'default' => 0],
+        ],
+
+        // Firmenname
+        'firmenname' => [
+            'inputType' => 'text',
+            'exclude'   => true,
+            'search'    => true,
+            'sorting'   => true,
+            'flag'      => DataContainer::SORT_INITIAL_LETTER_ASC,
+            'eval'      => ['mandatory' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
+            'sql'       => ['type' => 'string', 'length' => 255, 'default' => ''],
         ],
 
         // Standplatz
@@ -145,10 +156,20 @@ class tl_exhibitor extends Backend
 {
     public function addStatusIcon(array $row, string $label): string
     {
-        if ($row['reserviert']) {
-            return '<span style="color:#b00">&#9632;</span> ' . $label . ' <em>(reserviert)</em>';
+        $icon  = $row['reserviert']
+            ? '<span style="color:#b00">&#9632;</span>'
+            : '<span style="color:#090">&#9632;</span>';
+
+        $text = '<strong>' . htmlspecialchars($row['firmenname']) . '</strong>';
+
+        if ($row['standplatz']) {
+            $text .= ' <span style="color:#888">[' . htmlspecialchars($row['standplatz']) . ']</span>';
         }
 
-        return '<span style="color:#090">&#9632;</span> ' . $label;
+        if ($row['reserviert']) {
+            $text .= ' <em>(reserviert)</em>';
+        }
+
+        return $icon . ' ' . $text;
     }
 }

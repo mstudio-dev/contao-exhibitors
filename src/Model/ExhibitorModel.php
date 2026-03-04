@@ -11,6 +11,7 @@ use Contao\Model;
  * @property int    $pid
  * @property int    $sorting
  * @property int    $tstamp
+ * @property string $firmenname
  * @property string $standplatz
  * @property bool   $reserviert
  * @property string $website
