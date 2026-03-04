@@ -146,6 +146,7 @@ $GLOBALS['TL_DCA']['tl_exhibitor'] = [
             'inputType' => 'checkbox',
             'exclude'   => true,
             'filter'    => true,
+            'toggle'    => true,
             'eval'      => ['doNotCopy' => true, 'tl_class' => 'w50'],
             'sql'       => ['type' => 'boolean', 'default' => false],
         ],
