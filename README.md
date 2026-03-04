@@ -73,7 +73,7 @@ Add the **Exhibitor list** module (category: *Miscellaneous*) to any page layout
 The default template is located at:
 
 ```
-templates/frontend_module/exhibitor_list.html.twig
+contao/templates/frontend_module/exhibitor_list.html.twig
 ```
 
 To override it, copy the file into the `templates/` directory of your Contao installation (or a theme subfolder) and adjust as needed. Contao's Twig template inheritance applies.
