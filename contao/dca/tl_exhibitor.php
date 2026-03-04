@@ -156,7 +156,7 @@ class tl_exhibitor extends Backend
 {
     public function addStatusIcon(array $row, string $label): string
     {
-        $icon  = $row['reserviert']
+        $icon = $row['reserviert']
             ? '<span style="color:#090">&#9632;</span>'
             : '<span style="color:#b00">&#9632;</span>';
 
@@ -164,6 +164,10 @@ class tl_exhibitor extends Backend
 
         if ($row['standplatz']) {
             $text .= ' <span style="color:#888">[' . htmlspecialchars($row['standplatz']) . ']</span>';
+        }
+
+        if ($row['website']) {
+            $text .= ' &mdash; <a href="' . htmlspecialchars($row['website']) . '" target="_blank" rel="noopener">' . htmlspecialchars($row['website']) . '</a>';
         }
 
         return $icon . ' ' . $text;
