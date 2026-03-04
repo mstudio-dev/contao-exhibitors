@@ -1,0 +1,48 @@
+<?php $this->extend('block_unstyled'); ?>
+
+<?php $this->block('content'); ?>
+
+<?php if (!empty($this->rows)): ?>
+<div class="exhibitor-list-wrap">
+    <table class="exhibitor-list">
+        <thead>
+            <tr>
+                <th class="col-logo">Logo</th>
+                <th class="col-name">Firmenname</th>
+                <th class="col-stand">Standplatz</th>
+                <th class="col-status">Status</th>
+                <th class="col-website">Website</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->rows as $row): ?>
+            <tr class="exhibitor-row<?= $row['reserviert'] ? ' reserved' : '' ?>">
+                <td class="col-logo">
+                    <?php if ($row['logo']): ?>
+                    <img src="<?= $this->urlEncode($row['logo']->path) ?>" alt="<?= $this->specialchars($row['firmenname']) ?>" class="exhibitor-logo" loading="lazy">
+                    <?php endif; ?>
+                </td>
+                <td class="col-name"><?= $this->specialchars($row['firmenname']) ?></td>
+                <td class="col-stand"><?= $this->specialchars($row['standplatz']) ?></td>
+                <td class="col-status">
+                    <?php if ($row['reserviert']): ?>
+                    <span class="badge reserved">Reserviert</span>
+                    <?php else: ?>
+                    <span class="badge available">Verfügbar</span>
+                    <?php endif; ?>
+                </td>
+                <td class="col-website">
+                    <?php if ($row['website']): ?>
+                    <a href="<?= $this->specialchars($row['website']) ?>" target="_blank" rel="noopener noreferrer"><?= $this->specialchars(str_replace(['https://', 'http://'], '', $row['website'])) ?></a>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php else: ?>
+<p class="exhibitor-empty">Keine Aussteller vorhanden.</p>
+<?php endif; ?>
+
+<?php $this->endblock(); ?>
