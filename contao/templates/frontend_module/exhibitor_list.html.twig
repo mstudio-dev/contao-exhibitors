@@ -6,17 +6,17 @@
             <table class="exhibitor-list">
                 <thead>
                     <tr>
-                        <th class="col-logo">{{ 'MSC.exhibitor_logo'|trans({}, 'contao_default') ?: 'Logo' }}</th>
-                        <th class="col-name">{{ 'tl_exhibitor.firmenname.0'|trans({}, 'contao_tl_exhibitor') ?: 'Firmenname' }}</th>
-                        <th class="col-stand">{{ 'tl_exhibitor.standplatz.0'|trans({}, 'contao_tl_exhibitor') ?: 'Standplatz' }}</th>
-                        <th class="col-status">{{ 'tl_exhibitor.reserviert.0'|trans({}, 'contao_tl_exhibitor') ?: 'Status' }}</th>
-                        <th class="col-website">{{ 'tl_exhibitor.website.0'|trans({}, 'contao_tl_exhibitor') ?: 'Website' }}</th>
+                        <th class="ex-logo">{{ 'MSC.exhibitor_logo'|trans({}, 'contao_default') ?: 'Logo' }}</th>
+                        <th class="ex-name">{{ 'tl_exhibitor.firmenname.0'|trans({}, 'contao_tl_exhibitor') ?: 'Firmenname' }}</th>
+                        <th class="ex-stand">{{ 'tl_exhibitor.standplatz.0'|trans({}, 'contao_tl_exhibitor') ?: 'Standplatz' }}</th>
+                        <th class="ex-status">{{ 'tl_exhibitor.reserviert.0'|trans({}, 'contao_tl_exhibitor') ?: 'Status' }}</th>
+                        <th class="ex-website">{{ 'tl_exhibitor.website.0'|trans({}, 'contao_tl_exhibitor') ?: 'Website' }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for row in rows %}
                         <tr class="exhibitor-row{% if row.reserviert %} reserved{% endif %}">
-                            <td class="col-logo">
+                            <td class="ex-logo">
                                 {% if row.logo %}
                                     <img
                                         src="{{ row.logo.path|image_url }}"
@@ -26,16 +26,16 @@
                                     >
                                 {% endif %}
                             </td>
-                            <td class="col-name">{{ row.firmenname }}</td>
-                            <td class="col-stand">{{ row.standplatz }}</td>
-                            <td class="col-status">
+                            <td class="ex-name">{{ row.firmenname }}</td>
+                            <td class="ex-stand">{{ row.standplatz }}</td>
+                            <td class="ex-status">
                                 {% if row.reserviert %}
                                     <span class="badge reserved">Reserviert</span>
                                 {% else %}
                                     <span class="badge available">Verfügbar</span>
                                 {% endif %}
                             </td>
-                            <td class="col-website">
+                            <td class="ex-website">
                                 {% if row.website %}
                                     <a
                                         href="{{ row.website }}"

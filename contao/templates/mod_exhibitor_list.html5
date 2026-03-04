@@ -3,31 +3,31 @@
     <table class="exhibitor-list">
         <thead>
             <tr>
-                <th class="col-logo">Logo</th>
-                <th class="col-name">Firmenname</th>
-                <th class="col-stand">Standplatz</th>
-                <th class="col-status">Status</th>
-                <th class="col-website">Website</th>
+                <th class="ex-logo">Logo</th>
+                <th class="ex-name">Firmenname</th>
+                <th class="ex-stand">Standplatz</th>
+                <th class="ex-status">Status</th>
+                <th class="ex-website">Website</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($this->rows as $row): ?>
             <tr class="exhibitor-row<?= $row['reserviert'] ? ' reserved' : '' ?>">
-                <td class="col-logo">
+                <td class="ex-logo">
                     <?php if ($row['logo']): ?>
                     <img src="<?= $row['logo']->path ?>" alt="<?= $row['firmenname'] ?>" class="exhibitor-logo" loading="lazy">
                     <?php endif; ?>
                 </td>
-                <td class="col-name"><?= $row['firmenname'] ?></td>
-                <td class="col-stand"><?= $row['standplatz'] ?></td>
-                <td class="col-status">
+                <td class="ex-name"><?= $row['firmenname'] ?></td>
+                <td class="ex-stand"><?= $row['standplatz'] ?></td>
+                <td class="ex-status">
                     <?php if ($row['reserviert']): ?>
                     <span class="badge reserved">Reserviert</span>
                     <?php else: ?>
                     <span class="badge available">Verfügbar</span>
                     <?php endif; ?>
                 </td>
-                <td class="col-website">
+                <td class="ex-website">
                     <?php if ($row['website']): ?>
                     <a href="<?= $row['website'] ?>" target="_blank" rel="noopener noreferrer"><?= str_replace(['https://', 'http://'], '', $row['website']) ?></a>
                     <?php endif; ?>
