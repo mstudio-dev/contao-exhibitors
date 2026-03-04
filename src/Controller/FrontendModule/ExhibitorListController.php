@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 #[AsFrontendModule(
     type: 'exhibitor_list',
     category: 'miscellaneous',
-    template: 'frontend_module/exhibitor_list',
+    template: 'mod_exhibitor_list',
 )]
 class ExhibitorListController extends AbstractFrontendModuleController
 {
