@@ -1,11 +1,3 @@
-<?php
-
-use Contao\StringUtil;
-
-$this->extend('block_unstyled');
-
-$this->block('content'); ?>
-
 <?php if (!empty($this->rows)): ?>
 <div class="exhibitor-list-wrap">
     <table class="exhibitor-list">
@@ -48,5 +40,3 @@ $this->block('content'); ?>
 <?php else: ?>
 <p class="exhibitor-empty">Keine Aussteller vorhanden.</p>
 <?php endif; ?>
-
-<?php $this->endblock(); ?>
