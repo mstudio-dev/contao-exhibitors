@@ -17,10 +17,10 @@
                     {% for row in rows %}
                         <tr class="exhibitor-row{% if row.reserviert %} reserved{% endif %}">
                             <td class="ex-logo">
-                                {% if row.logo %}
+                                {% if row.logoPath %}
                                     <img
-                                        src="{{ row.logo.path|image_url }}"
-                                        alt="{{ row.standplatz }}"
+                                        src="{{ row.logoPath }}"
+                                        alt="{{ row.logoAlt }}"
                                         class="exhibitor-logo"
                                         loading="lazy"
                                     >
