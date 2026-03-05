@@ -23,7 +23,7 @@ class ExhibitorModel extends Model
     protected static $strTable = 'tl_exhibitor';
 
     /**
-     * Returns all published exhibitors ordered by sorting.
+     * Returns all published exhibitors ordered by company name.
      *
      * @return \Contao\Model\Collection|ExhibitorModel[]|ExhibitorModel|null
      */
@@ -32,7 +32,7 @@ class ExhibitorModel extends Model
         return static::findBy(
             ['tl_exhibitor.published = ?'],
             [1],
-            ['order' => 'tl_exhibitor.sorting ASC']
+            ['order' => 'tl_exhibitor.firmenname ASC']
         );
     }
 }

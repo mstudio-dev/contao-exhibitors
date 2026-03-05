@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_exhibitor'] = [
     'list' => [
         'sorting' => [
             'mode'        => DataContainer::MODE_SORTABLE,
-            'fields'      => ['standplatz'],
+            'fields'      => ['firmenname'],
             'flag'        => DataContainer::SORT_INITIAL_LETTER_ASC,
             'panelLayout' => 'filter;search,limit',
         ],
