@@ -17,7 +17,7 @@ class ContaoExhibitorsExtension extends Extension implements PrependExtensionInt
         // Ensure templates are discoverable by Twig regardless of Contao's
         // filesystem loader cache state.
         $container->prependExtensionConfig('twig', [
-            'paths' => [\dirname(__DIR__, 2) . '/contao/templates' => null],
+            'paths' => [\dirname(__DIR__, 2) . '/contao/templates/twig' => null],
         ]);
     }
 
