@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 #[AsFrontendModule(
     type: 'exhibitor_cards',
     category: 'miscellaneous',
+    template: 'frontend_module/exhibitor_cards',
 )]
 class ExhibitorCardsController extends AbstractFrontendModuleController
 {
