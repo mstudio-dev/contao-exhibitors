@@ -13,7 +13,9 @@ use Contao\Model;
  * @property int    $tstamp
  * @property string $firmenname
  * @property string $standplatz
+ * @property string $ort
  * @property bool   $reserviert
+ * @property int    $branche
  * @property string $website
  * @property string $logo
  * @property bool   $published

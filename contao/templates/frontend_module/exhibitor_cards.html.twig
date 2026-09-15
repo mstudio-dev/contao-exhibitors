@@ -1,0 +1,90 @@
+{% extends "@Contao/frontend_module/_base.html.twig" %}
+
+{% block content %}
+    {% if rows is not empty %}
+        <div class="exhibitor-cards-wrap">
+
+            {% if categories is not empty %}
+                <div class="exhibitor-filter">
+                    <button class="filter-btn active" data-filter="all">Alle</button>
+                    {% for cat in categories %}
+                        <button class="filter-btn" data-filter="{{ cat.id }}">{{ cat.title }}</button>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="exhibitor-cards">
+                {% for row in rows %}
+                    <div class="exhibitor-card{% if row.reserviert %} reserved{% endif %}" data-category="{{ row.brancheId }}">
+
+                        {% if row.logoPath %}
+                            <div class="card-logo">
+                                {% if row.website %}
+                                    <a href="{{ row.website }}" target="_blank" rel="noopener noreferrer" class="card-logo-link" tabindex="-1" aria-hidden="true">
+                                {% endif %}
+                                <img
+                                    src="{{ row.logoPath }}"
+                                    alt="{{ row.logoAlt }}"
+                                    class="exhibitor-logo"
+                                    loading="lazy"
+                                >
+                                {% if row.website %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h3 class="card-name">{{ row.firmenname }}</h3>
+
+                            {% if row.ort %}
+                                <p class="card-ort">{{ row.ort }}</p>
+                            {% endif %}
+
+                            {% if row.brancheLabel %}
+                                <span class="card-branche">{{ row.brancheLabel }}</span>
+                            {% endif %}
+
+                            {% if row.standplatz %}
+                                <p class="card-stand">Stand: {{ row.standplatz }}</p>
+                            {% endif %}
+
+                            {% if row.website %}
+                                <a
+                                    href="{{ row.website }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="card-website"
+                                >{{ row.website|replace({'https://': '', 'http://': ''}) }}</a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <script>
+        (function () {
+            var wrap = document.currentScript.previousElementSibling;
+            var btns = wrap.querySelectorAll('.exhibitor-filter .filter-btn');
+            var cards = wrap.querySelectorAll('.exhibitor-cards .exhibitor-card');
+
+            btns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var filter = this.dataset.filter;
+
+                    btns.forEach(function (b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+
+                    cards.forEach(function (card) {
+                        card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+                    });
+                });
+            });
+        })();
+        </script>
+    {% else %}
+        <p class="exhibitor-empty">Keine Aussteller vorhanden.</p>
+    {% endif %}
+{% endblock %}

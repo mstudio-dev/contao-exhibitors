@@ -8,6 +8,7 @@
                     <tr>
                         <th class="ex-logo">{{ 'MSC.exhibitor_logo'|trans({}, 'contao_default') ?: 'Logo' }}</th>
                         <th class="ex-name">{{ 'tl_exhibitor.firmenname.0'|trans({}, 'contao_tl_exhibitor') ?: 'Firmenname' }}</th>
+                        <th class="ex-ort">{{ 'tl_exhibitor.ort.0'|trans({}, 'contao_tl_exhibitor') ?: 'Ort' }}</th>
                         <th class="ex-stand">{{ 'tl_exhibitor.standplatz.0'|trans({}, 'contao_tl_exhibitor') ?: 'Standplatz' }}</th>
                         <th class="ex-status">{{ 'tl_exhibitor.reserviert.0'|trans({}, 'contao_tl_exhibitor') ?: 'Status' }}</th>
                         <th class="ex-website">{{ 'tl_exhibitor.website.0'|trans({}, 'contao_tl_exhibitor') ?: 'Website' }}</th>
@@ -18,15 +19,22 @@
                         <tr class="exhibitor-row{% if row.reserviert %} reserved{% endif %}">
                             <td class="ex-logo">
                                 {% if row.logoPath %}
+                                    {% if row.website %}
+                                        <a href="{{ row.website }}" target="_blank" rel="noopener noreferrer" class="logo-link">
+                                    {% endif %}
                                     <img
                                         src="{{ row.logoPath }}"
                                         alt="{{ row.logoAlt }}"
                                         class="exhibitor-logo"
                                         loading="lazy"
                                     >
+                                    {% if row.website %}
+                                        </a>
+                                    {% endif %}
                                 {% endif %}
                             </td>
                             <td class="ex-name">{{ row.firmenname }}</td>
+                            <td class="ex-ort">{{ row.ort }}</td>
                             <td class="ex-stand">{{ row.standplatz }}</td>
                             <td class="ex-status">
                                 {% if row.reserviert %}

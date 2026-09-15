@@ -11,16 +11,17 @@ use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\FilesModel;
 use Contao\ModuleModel;
 use Contao\StringUtil;
+use Mstudio\ContaoExhibitorsBundle\Model\ExhibitorCategoryModel;
 use Mstudio\ContaoExhibitorsBundle\Model\ExhibitorModel;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 #[AsFrontendModule(
-    type: 'exhibitor_list',
+    type: 'exhibitor_cards',
     category: 'miscellaneous',
 )]
-class ExhibitorListController extends AbstractFrontendModuleController
+class ExhibitorCardsController extends AbstractFrontendModuleController
 {
     public function __construct(
         private readonly ImageFactoryInterface $imageFactory,
@@ -61,18 +62,42 @@ class ExhibitorListController extends AbstractFrontendModuleController
                 }
 
                 $rows[] = [
-                    'firmenname' => $exhibitor->firmenname,
-                    'standplatz' => $exhibitor->standplatz,
-                    'ort'        => $exhibitor->ort,
-                    'reserviert' => (bool) $exhibitor->reserviert,
-                    'website'    => $exhibitor->website,
-                    'logoPath'   => $logoPath,
-                    'logoAlt'    => $exhibitor->firmenname,
+                    'firmenname'   => $exhibitor->firmenname,
+                    'standplatz'   => $exhibitor->standplatz,
+                    'ort'          => $exhibitor->ort,
+                    'reserviert'   => (bool) $exhibitor->reserviert,
+                    'website'      => $exhibitor->website,
+                    'logoPath'     => $logoPath,
+                    'logoAlt'      => $exhibitor->firmenname,
+                    'brancheId'    => (int) $exhibitor->branche,
+                    'brancheLabel' => '',
                 ];
             }
         }
 
+        $categories = [];
+        $categoryCollection = ExhibitorCategoryModel::findAllSorted();
+
+        if (null !== $categoryCollection) {
+            foreach ($categoryCollection as $cat) {
+                $categories[] = [
+                    'id'    => (int) $cat->id,
+                    'title' => $cat->title,
+                ];
+            }
+
+            // Fill brancheLabel in rows
+            $catMap = array_column($categories, 'title', 'id');
+            foreach ($rows as &$row) {
+                if ($row['brancheId'] && isset($catMap[$row['brancheId']])) {
+                    $row['brancheLabel'] = $catMap[$row['brancheId']];
+                }
+            }
+            unset($row);
+        }
+
         $template->set('rows', $rows);
+        $template->set('categories', $categories);
 
         return $template->getResponse();
     }

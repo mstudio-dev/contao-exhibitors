@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_exhibitor'] = [
 
     // Palettes
     'palettes' => [
-        'default' => '{exhibitor_legend},firmenname,standplatz,reserviert;{contact_legend},website,logo;{publish_legend},published',
+        'default' => '{exhibitor_legend},firmenname,standplatz,ort,reserviert,branche;{contact_legend},website,logo;{publish_legend},published',
     ],
 
     // Fields
@@ -112,6 +112,26 @@ $GLOBALS['TL_DCA']['tl_exhibitor'] = [
             'filter'    => true,
             'eval'      => ['tl_class' => 'w50 m12'],
             'sql'       => ['type' => 'boolean', 'default' => false],
+        ],
+
+        // Ort
+        'ort' => [
+            'inputType' => 'text',
+            'exclude'   => true,
+            'search'    => true,
+            'eval'      => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql'       => ['type' => 'string', 'length' => 255, 'default' => ''],
+        ],
+
+        // Branche
+        'branche' => [
+            'inputType'  => 'select',
+            'foreignKey' => 'tl_exhibitor_category.title',
+            'exclude'    => true,
+            'filter'     => true,
+            'eval'       => ['includeBlankOption' => true, 'tl_class' => 'w50'],
+            'sql'        => ['type' => 'integer', 'unsigned' => true, 'default' => 0],
+            'relation'   => ['type' => 'hasOne', 'load' => 'lazy'],
         ],
 
         // Website
