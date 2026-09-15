@@ -20,7 +20,7 @@
                         {% if row.logoPath %}
                             <div class="card-logo">
                                 {% if row.website %}
-                                    <a href="{{ row.website }}" target="_blank" rel="noopener noreferrer" class="card-logo-link" tabindex="-1" aria-hidden="true">
+                                    <a href="{{ row.website }}" target="_blank" rel="noopener noreferrer" class="card-logo-link">
                                 {% endif %}
                                 <img
                                     src="{{ row.logoPath }}"
@@ -49,14 +49,9 @@
                                 <p class="card-stand">Stand: {{ row.standplatz }}</p>
                             {% endif %}
 
-                            {% if row.website %}
-                                <a
-                                    href="{{ row.website }}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="card-website"
-                                >{{ row.website|replace({'https://': '', 'http://': ''}) }}</a>
-                            {% endif %}
+                            <span class="badge {% if row.reserviert %}reserved{% else %}available{% endif %}">
+                                {% if row.reserviert %}Reserviert{% else %}Verfügbar{% endif %}
+                            </span>
                         </div>
 
                     </div>
